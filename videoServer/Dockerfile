@@ -9,4 +9,3 @@ COPY videoServer.zip /
 RUN unzip videoServer.zip
 WORKDIR videoServer/
 RUN npm install
-RUN npm start

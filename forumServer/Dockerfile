@@ -9,4 +9,3 @@ COPY forumServer.zip /
 RUN unzip forumServer.zip
 WORKDIR forumServer/
 RUN npm install
-RUN npm start

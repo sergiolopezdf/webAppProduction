@@ -9,4 +9,3 @@ COPY chatServer.zip /
 RUN unzip chatServer.zip
 WORKDIR chatServer/
 RUN npm install
-RUN npm start

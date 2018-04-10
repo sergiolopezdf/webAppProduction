@@ -5,8 +5,7 @@ RUN apt-get install sudo
 RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 RUN apt-get install nodejs -y
 RUN apt-get install git unzip -y
-COPY webApp.zip /
-RUN unzip webApp.zip
-WORKDIR webApp/
+COPY webApp_production.zip /
+RUN unzip webApp_production.zip
+WORKDIR webApp_production/
 RUN npm install
-RUN npm start
