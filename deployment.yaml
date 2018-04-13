@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webappdeployment
+  labels:
+    app: webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: db
+        image: postgres
+        env:
+          - name: POSTGRES_USER
+            value: webapp
+          - name: POSTGRES_PASSWORD
+            value: webapp
+        ports:
+          - containerPort: 5432
+
+      - name: webapp
+        image: sergiolopezdf/webapp_tfg_upm
+        env:
+          - name: PORT
+            value: "3000"
+          - name: PRODUCTION
+            value: "true"
+          - name: DATABASE_URL
+            value: postgres://webapp:webapp@localhost:5432/webapp
+        ports:
+        - containerPort: 3000
+
+        
+
+      

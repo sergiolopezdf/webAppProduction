@@ -9,3 +9,4 @@ COPY webApp_production.zip /
 RUN unzip webApp_production.zip
 WORKDIR webApp_production/
 RUN npm install
+CMD npm start
