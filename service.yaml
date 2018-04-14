@@ -1,9 +1,11 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: networkingservice
+  name: webappnetwork
 spec:
   # type: NodePort
+  clusterIP:
+  - 10.96.0.1
   selector:
     app: webapp
   ports:  

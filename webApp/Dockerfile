@@ -9,4 +9,6 @@ COPY webApp_production.zip /
 RUN unzip webApp_production.zip
 WORKDIR webApp_production/
 RUN npm install
+ENV PORT=3000
+EXPOSE 3000
 CMD npm start

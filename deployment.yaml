@@ -25,6 +25,52 @@ spec:
         ports:
           - containerPort: 5432
 
+
+      - name: videoserver
+        image: sergiolopezdf/videoserver_tfg_upm
+        env:
+          - name: PRODUCTION
+            value: "true"
+          - name: DATABASE_URL
+            value: postgres://webapp:webapp@localhost:5432/webapp
+          - name: WEBAPP_SERVER_URL
+            value: localhost
+          - name: WEBAPP_SERVER_PORT
+            value: "3000"
+        ports:
+        - containerPort: 8000
+
+      - name: forumserver
+        image: sergiolopezdf/forumserver_tfg_upm
+        env:
+          - name: PRODUCTION
+            value: "true"
+          - name: DATABASE_URL
+            value: postgres://webapp:webapp@localhost:5432/webapp
+          - name: WEBAPP_SERVER_URL
+            value: localhost
+          - name: WEBAPP_SERVER_PORT
+            value: "3000"
+            
+        ports:
+        - containerPort: 5000
+
+      - name: chatserver
+        image: sergiolopezdf/chatserver_tfg_upm
+        env:
+          - name: PRODUCTION
+            value: "true"
+          - name: DATABASE_URL
+            value: postgres://webapp:webapp@localhost:5432/webapp
+          - name: WEBAPP_SERVER_URL
+            value: localhost
+          - name: WEBAPP_SERVER_PORT
+            value: "3000"
+            
+        ports:
+        - containerPort: 4000
+
+
       - name: webapp
         image: sergiolopezdf/webapp_tfg_upm
         env:
@@ -34,6 +80,12 @@ spec:
             value: "true"
           - name: DATABASE_URL
             value: postgres://webapp:webapp@localhost:5432/webapp
+          - name: VIDEO_SERVER_URL
+            value: localhost
+          - name: CHAT_SERVER_URL
+            value: localhost
+          - name: FORUM_SERVER_URL
+            value: localhost
         ports:
         - containerPort: 3000
 

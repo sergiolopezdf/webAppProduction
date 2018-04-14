@@ -9,3 +9,6 @@ COPY chatServer.zip /
 RUN unzip chatServer.zip
 WORKDIR chatServer/
 RUN npm install
+ENV PORT=4000
+EXPOSE 4000
+CMD npm start

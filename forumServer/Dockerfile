@@ -9,3 +9,7 @@ COPY forumServer.zip /
 RUN unzip forumServer.zip
 WORKDIR forumServer/
 RUN npm install
+ENV PORT=5000
+EXPOSE 5000
+CMD npm start
+
