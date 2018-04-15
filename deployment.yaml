@@ -81,11 +81,11 @@ spec:
           - name: DATABASE_URL
             value: postgres://webapp:webapp@localhost:5432/webapp
           - name: VIDEO_SERVER_URL
-            value: localhost
+            value: "192.168.99.100"
           - name: CHAT_SERVER_URL
-            value: localhost
+            value: "192.168.99.100"
           - name: FORUM_SERVER_URL
-            value: localhost
+            value: "192.168.99.100"
         ports:
         - containerPort: 3000
 
