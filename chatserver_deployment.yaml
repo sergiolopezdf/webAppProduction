@@ -1,0 +1,50 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: chatserverservice
+spec:
+  type: NodePort
+  selector:
+    app: chatserver
+  ports:  
+  - protocol: TCP
+    port: 4000
+    nodePort: 30005
+  clusterIP: 10.96.2.5
+      
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatserverdeployment
+  labels:
+    app: chatserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chatserver
+  template:
+    metadata:
+      labels:
+        app: chatserver
+    spec:
+      containers:
+      - name: chatserver
+        image: sergiolopezdf/chatserver_tfg_upm
+        env:
+          - name: PRODUCTION
+            value: "true"
+          - name: DATABASE_URL
+            value: postgres://webapp:webapp@10.96.2.6:5432/webapp
+          - name: WEBAPP_SERVER_URL
+            value: 10.96.2.1
+          - name: WEBAPP_SERVER_PORT
+            value: "3000"
+          - name: PORT #The env var is not the same as the others
+            value: "4000"
+        ports:
+        - containerPort: 4000
+
+

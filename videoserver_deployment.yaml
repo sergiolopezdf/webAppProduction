@@ -1,0 +1,51 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: videoserverservice
+spec:
+  type: NodePort
+  selector:
+    app: videoserver
+  ports:  
+  - name: http
+    protocol: TCP
+    nodePort: 30003
+    port: 8000
+  clusterIP: 10.96.2.3
+      
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: videoserverdeployment
+  labels:
+    app: videoserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: videoserver
+  template:
+    metadata:
+      labels:
+        app: videoserver
+    spec:
+      containers:
+      - name: videoserver
+        image: sergiolopezdf/videoserver_tfg_upm
+        env:
+          - name: PRODUCTION
+            value: "true"
+          - name: DATABASE_URL
+            value: postgres://webapp:webapp@10.96.2.6:5432/webapp
+          - name: WEBAPP_SERVER_URL
+            value: 10.96.2.1
+          - name: WEBAPP_SERVER_PORT
+            value: "3000"
+          - name: VIDEO_SERVER_PORT
+            value: "8000"
+        ports:
+        - containerPort: 8000
+
+

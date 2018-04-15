@@ -1,0 +1,51 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: forumserverservice
+spec:
+  type: NodePort
+  selector:
+    app: forumserver
+  ports:  
+  - name: http
+    protocol: TCP
+    port: 5000
+    nodePort: 30004
+  clusterIP: 10.96.2.4
+      
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forumserverdeployment
+  labels:
+    app: forumserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: forumserver
+  template:
+    metadata:
+      labels:
+        app: forumserver
+    spec:
+      containers:
+      - name: forumserver
+        image: sergiolopezdf/forumserver_tfg_upm
+        env:
+          - name: PRODUCTION
+            value: "true"
+          - name: DATABASE_URL
+            value: postgres://webapp:webapp@10.96.2.6:5432/webapp
+          - name: WEBAPP_SERVER_URL
+            value: 10.96.2.1
+          - name: WEBAPP_SERVER_PORT
+            value: "3000"
+          - name: FORUM_SERVER_PORT
+            value: "5000"
+        ports:
+        - containerPort: 5000
+
+
