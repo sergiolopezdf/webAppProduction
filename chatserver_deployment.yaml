@@ -10,7 +10,7 @@ spec:
   - protocol: TCP
     port: 4000
     nodePort: 30005
-  clusterIP: 10.96.2.5
+  clusterIP: 10.0.1.5
       
 ---
 
@@ -37,9 +37,9 @@ spec:
           - name: PRODUCTION
             value: "true"
           - name: DATABASE_URL
-            value: postgres://webapp:webapp@10.96.2.6:5432/webapp
+            value: postgres://webapp:webapp@10.0.1.1:5432/webapp
           - name: WEBAPP_SERVER_URL
-            value: 10.96.2.1
+            value: 10.0.1.2
           - name: WEBAPP_SERVER_PORT
             value: "3000"
           - name: PORT #The env var is not the same as the others

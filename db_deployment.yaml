@@ -10,7 +10,7 @@ spec:
   - protocol: TCP
     port: 5432
     nodePort: 30002
-  clusterIP: 10.96.2.6
+  clusterIP: 10.0.1.1
 
 ---
 
