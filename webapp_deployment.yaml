@@ -40,7 +40,7 @@ spec:
           - name: DATABASE_URL
             value: postgres://webapp:webapp@10.51.240.6:5432/webapp
           - name: VIDEO_SERVER_URL
-            value: 35.190.217.245 
+            value: 35.205.77.134 
           - name: VIDEO_SERVER_PORT
             value: "8000"
           - name: CHAT_SERVER_URL
