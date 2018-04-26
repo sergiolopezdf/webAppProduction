@@ -3,19 +3,17 @@ apiVersion: v1
 metadata:
   name: forumserverservice
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: forumserver
   ports:  
-  - name: http
-    protocol: TCP
+  - protocol: TCP
     port: 5000
-    nodePort: 30004
-  clusterIP: 10.0.1.4
+  clusterIP: 10.51.240.4
       
 ---
 
-apiVersion: apps/v1
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: forumserverdeployment
@@ -38,9 +36,9 @@ spec:
           - name: PRODUCTION
             value: "true"
           - name: DATABASE_URL
-            value: postgres://webapp:webapp@10.0.1.1:5432/webapp
+            value: postgres://webapp:webapp@10.51.240.6:5432/webapp
           - name: WEBAPP_SERVER_URL
-            value: 10.0.1.2
+            value: 10.51.240.2
           - name: WEBAPP_SERVER_PORT
             value: "3000"
           - name: FORUM_SERVER_PORT

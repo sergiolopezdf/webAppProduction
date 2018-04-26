@@ -3,18 +3,17 @@ apiVersion: v1
 metadata:
   name: chatserverservice
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: chatserver
   ports:  
   - protocol: TCP
     port: 4000
-    nodePort: 30005
-  clusterIP: 10.0.1.5
+  clusterIP: 10.51.240.5
       
 ---
 
-apiVersion: apps/v1
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: chatserverdeployment
@@ -37,9 +36,9 @@ spec:
           - name: PRODUCTION
             value: "true"
           - name: DATABASE_URL
-            value: postgres://webapp:webapp@10.0.1.1:5432/webapp
+            value: postgres://webapp:webapp@10.51.240.6:5432/webapp
           - name: WEBAPP_SERVER_URL
-            value: 10.0.1.2
+            value: 10.51.240.2
           - name: WEBAPP_SERVER_PORT
             value: "3000"
           - name: PORT #The env var is not the same as the others

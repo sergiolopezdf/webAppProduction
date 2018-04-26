@@ -3,20 +3,19 @@ apiVersion: v1
 metadata:
   name: webappservice
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: webapp
   ports:  
   - name: http
     protocol: TCP
     port: 80
-    nodePort: 30001
     targetPort: 3000
-  clusterIP: 10.0.1.2
-      
+  clusterIP: 10.51.240.2
+
 ---
 
-apiVersion: apps/v1
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: webappdeployment
@@ -39,19 +38,19 @@ spec:
           - name: PRODUCTION
             value: "true"
           - name: DATABASE_URL
-            value: postgres://webapp:webapp@10.96.2.6:5432/webapp
+            value: postgres://webapp:webapp@10.51.240.6:5432/webapp
           - name: VIDEO_SERVER_URL
-            value: 35.192.181.223
+            value: 35.190.217.245 
           - name: VIDEO_SERVER_PORT
-            value: "30003"
+            value: "8000"
           - name: CHAT_SERVER_URL
-            value: 35.192.181.223
+            value: 104.155.14.234 
           - name: CHAT_SERVER_PORT
-            value: "30005"
+            value: "4000"
           - name: FORUM_SERVER_URL
-            value: 35.192.181.223
+            value: 35.195.70.48 
           - name: FORUM_SERVER_PORT
-            value: "30004"
+            value: "5000"
         ports:
         - containerPort: 3000
 
