@@ -11,5 +11,5 @@ RUN unzip videoServer.zip
 WORKDIR videoServer/
 RUN npm install
 ENV PORT=8000
-EXPOSE 8000
+EXPOSE 8000-8031
 CMD npm start

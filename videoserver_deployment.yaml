@@ -7,8 +7,103 @@ spec:
   selector:
     app: videoserver
   ports:  
-  - protocol: TCP
+  - name: http
+    protocol: TCP
     port: 8000
+  - name: video1
+    protocol: TCP
+    port: 8001
+  - name: video2
+    protocol: TCP
+    port: 8002
+  - name: video3
+    protocol: TCP
+    port: 8003
+  - name: video4
+    protocol: TCP
+    port: 8004
+  - name: video5
+    protocol: TCP
+    port: 8005
+  - name: video6
+    protocol: TCP
+    port: 8006
+  - name: video7
+    protocol: TCP
+    port: 8007
+  - name: video8
+    protocol: TCP
+    port: 8008
+  - name: video9
+    protocol: TCP
+    port: 8009
+  - name: video10
+    protocol: TCP
+    port: 8010
+  - name: video11
+    protocol: TCP
+    port: 8011
+  - name: video12
+    protocol: TCP
+    port: 8012
+  - name: video13
+    protocol: TCP
+    port: 8013
+  - name: video14
+    protocol: TCP
+    port: 8014
+  - name: video15
+    protocol: TCP
+    port: 8015
+  - name: video16
+    protocol: TCP
+    port: 8016
+  - name: video17
+    protocol: TCP
+    port: 8017
+  - name: video18
+    protocol: TCP
+    port: 8018
+  - name: video19
+    protocol: TCP
+    port: 8019
+  - name: video20
+    protocol: TCP
+    port: 8020
+  - name: video21
+    protocol: TCP
+    port: 8021
+  - name: video22
+    protocol: TCP
+    port: 8022
+  - name: video23
+    protocol: TCP
+    port: 8023
+  - name: video24
+    protocol: TCP
+    port: 8024
+  - name: video25
+    protocol: TCP
+    port: 8025
+  - name: video26
+    protocol: TCP
+    port: 8026
+  - name: video27
+    protocol: TCP
+    port: 8027
+  - name: video28
+    protocol: TCP
+    port: 8028
+  - name: video29
+    protocol: TCP
+    port: 8029
+  - name: video30
+    protocol: TCP
+    port: 8030
+  - name: video31
+    protocol: TCP
+    port: 8031
+
   clusterIP: 10.51.240.3
       
 ---
